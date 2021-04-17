@@ -1,4 +1,4 @@
-FROM php:7.4-fpm-buster
+FROM php:8.0.3-fpm-buster
 LABEL maintainer="ucan-lab <yes@u-can.pro>"
 SHELL ["/bin/bash", "-oeux", "pipefail", "-c"]
 
@@ -27,7 +27,7 @@ ENV TZ=Asia/Taipei \
   DB_USERNAME=phper \
   DB_PASSWORD=secret
 
-COPY --from=composer:1.10 /usr/bin/composer /usr/bin/composer
+COPY --from=composer:2.0.12 /usr/bin/composer /usr/bin/composer
 
 RUN apt-get update
 RUN apt-get -y install git curl libicu-dev libonig-dev libzip-dev libfreetype6-dev libjpeg62-turbo-dev libpng-dev libxml2-dev unzip locales opencc libopencc-dev 
@@ -40,8 +40,8 @@ RUN docker-php-ext-configure gd --with-freetype --with-jpeg && \
   docker-php-ext-install -j$(nproc) gd && \
   docker-php-ext-install intl pdo_mysql zip bcmath exif
 RUN composer config -g process-timeout 3600 && \
-  composer config -g repos.packagist composer https://packagist.org && \
-  composer global require hirak/prestissimo
+  composer config -g repos.packagist composer https://packagist.org 
+  # && \  composer global require hirak/prestissimo # copmoser 2 don't need this plugin
 
 COPY ./php-fpm.d/zzz-www.conf /usr/local/etc/php-fpm.d/zzz-www.conf
 COPY ./php.ini /usr/local/etc/php/php.ini
