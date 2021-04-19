@@ -5,6 +5,7 @@ volumes:
 services:
   app:
     build: ./infra/docker/php
+    env_file: ./env.mariadb.local.env
     volumes:
       - php-fpm-socket:/var/run/php-fpm
       - ./backend:/work/backend
@@ -20,6 +21,7 @@ services:
 
   db:
     build: ./infra/docker/mysql
+    env_file: ./env.mariadb.local.env
     ports:
       - 3306:3306
     volumes:
