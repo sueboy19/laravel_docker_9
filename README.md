@@ -18,3 +18,6 @@ zh-tw
 
 ## 額外插件
 OpenCC
+
+## Queue
+[Queue Worker](infra/docker/queue/supervisord.d/laravel-worker.conf) 可以自行替換
