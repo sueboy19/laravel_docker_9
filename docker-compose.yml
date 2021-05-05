@@ -26,3 +26,15 @@ services:
       - 3306:3306
     volumes:
       - db-store:/var/lib/mysql
+
+  queue:
+    build: ./infra/docker/queue
+    env_file: ./env.mariadb.local.env
+    stop_signal: SIGTERM
+    depends_on:
+      - app
+    volumes:
+      - ./backend:/work/backend
+    # environment:
+    #   - CONNECTION=redis       # Defaults to 'default'
+    #   - QUEUE=high,default     # Defaults to 'default'    
