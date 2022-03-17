@@ -1,0 +1,8 @@
+# 這行可有可無 主要是 dockerfile printenv 那行最重要 #!/usr/bin/env bash
+# 這行可有可無 SHELL=/bin/bash
+PATH=/usr/bin:/usr/local/bin:$PATH
+* * * * * cd /work/backend && php artisan schedule:run >> /var/log/cron.log 2>&1
+#* * * * * cd /work/backend && php artisan schedule:run >> /var/log/cron.log 2>&1 && echo schedule > /proc/1/fd/1 2>/proc/1/fd/2
+#* * * * * date >> /var/log/cron.log
+#* * * * * echo hello > /proc/1/fd/1 2>/proc/1/fd/2
+#要多一行
