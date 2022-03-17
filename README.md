@@ -21,3 +21,34 @@ OpenCC
 
 ## Queue
 [Queue Worker](infra/docker/queue/supervisord.d/laravel-worker.conf) 可以自行替換
+
+
+## Cron
+[Cron](infra/docker/cron/crontab) 可以自行替換  
+
+app/Console/Kernel.php
+
+```php
+protected function schedule(Schedule $schedule)
+    {
+        // $schedule->command('inspire')->hourly();
+
+        $fileCronLog = '/var/log/laravel-scheduler.log';  // dockerfile RUN ln -sf /proc/1/fd/1 /var/log/laravel-scheduler.log
+
+        $schedule->command('your command')->timezone(config('app.timezone'))
+        ->everyMinute()  // 自行替換   // cron('* * * * *')
+        ->onOneServer()  
+            ->before(function () {
+                Log::info("Schedule your command before!");
+            })
+            ->after(function () {
+                Log::info("Schedule your command after!");
+            })
+            ->onSuccess(function (Stringable $output) {
+                Log::info("Schedule your command onSuccess!");
+            })
+            ->onFailure(function (Stringable $output) {
+                Log::error("Schedule your command onFailure!");
+            })
+            ->appendOutputTo($fileCronLog);
+```
