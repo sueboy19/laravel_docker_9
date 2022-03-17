@@ -38,3 +38,12 @@ services:
     # environment:
     #   - CONNECTION=redis       # Defaults to 'default'
     #   - QUEUE=high,default     # Defaults to 'default'    
+    
+  cron:
+    build: ./infra/docker/cron
+    env_file: ./env.mariadb.local.env
+    stop_signal: SIGTERM
+    depends_on:
+      - app
+    volumes:
+      - ./backend:/work/backend
