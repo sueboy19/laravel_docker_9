@@ -52,3 +52,5 @@ protected function schedule(Schedule $schedule)
             })
             ->appendOutputTo($fileCronLog);
 ```
+
+執行無反應時，需要到 /work/backend/storage/logs/laravel.log 閱讀錯誤訊息
