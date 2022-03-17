@@ -54,3 +54,5 @@ protected function schedule(Schedule $schedule)
 ```
 
 執行無反應時，需要到 /work/backend/storage/logs/laravel.log 閱讀錯誤訊息
+
+特別注意：[crontab](infra/docker/cron/crontab)的格式必需LF，不能是CRLF
