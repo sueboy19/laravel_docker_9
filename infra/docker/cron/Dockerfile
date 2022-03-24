@@ -21,7 +21,7 @@ ENV TZ=Asia/Taipei \
   DB_PORT=3306 
 
 RUN apt-get update
-RUN apt-get -y install locales libicu-dev libzip-dev htop cron nano
+RUN apt-get -y install locales libicu-dev libzip-dev htop cron nano dos2unix
 RUN apt-get -y install default-mysql-client
 
 RUN locale-gen en_US.UTF-8 && localedef -f UTF-8 -i en_US en_US.UTF-8
@@ -48,6 +48,8 @@ RUN printenv > /etc/environment
 
 
 COPY crontab /etc/cron.d/crontab
+# https://tech.uccu.website/convert-shell-file-end-of-line-sequence-at-dockerfile.html
+RUN dos2unix /etc/cron.d/crontab
 RUN chmod 0644 /etc/cron.d/crontab
 RUN crontab /etc/cron.d/crontab
 
