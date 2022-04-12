@@ -6,3 +6,5 @@ ooxxooxx.com.key
 ssl_certificate    /work/backend/ooxxooxx.com.pem;
 ssl_certificate_key    /work/backend/ooxxooxx.com.key;
 
+# php
+執行 php artisan migrate 失敗的話，通常是忘了 php artisan config:cache
