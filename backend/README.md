@@ -11,13 +11,16 @@ ssl_certificate_key    /work/backend/ooxxooxx.com.key;
 
 
 ## php Dotenv
-務必使用，因為下面 Kernel.php 會依照 env.mariab.local.env 中 APP_ENV 的參數來決定，實際載入 .env.local.env 檔案  
+務必使用，因為下面 Kernel.php 會依照 env.mariab.local.env 中 APP_ENV 的參數來決定，實際載入 .env.{{  }}.env 檔案  
 
 ```php
 env.mariadb.local.env
-
 APP_ENV = local => .env.local.env
+
+env.mariadb.staging.env
 APP_ENV = staging => .env.staging.env
+
+env.mariadb.production.env
 APP_ENV = production => .env.production.env
 ```
 
