@@ -21,6 +21,8 @@ APP_ENV = staging => .env.staging.env
 APP_ENV = production => .env.production.env
 ```
 
+實際情況依需求決定，可以不要使用 Dotenv 和 改 Kernel
+
 ## php Laravel backend/app/Http/Kernel.php
 
 ```php
