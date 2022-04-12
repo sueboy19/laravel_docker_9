@@ -9,6 +9,18 @@ ssl_certificate_key    /work/backend/ooxxooxx.com.key;
 # php
 執行 php artisan migrate 失敗的話，通常是忘了 php artisan config:cache  
 
+
+## php Dotenv
+務必使用，因為下面 Kernel.php 會依照 env.mariab.local.env 中 APP_ENV 的參數來決定，實際載入 .env.local.env 檔案  
+
+```php
+env.mariadb.local.env
+
+APP_ENV = local => .env.local.env
+APP_ENV = staging => .env.staging.env
+APP_ENV = production => .env.production.env
+```
+
 ## php Laravel backend/app/Http/Kernel.php
 
 ```php
