@@ -1,4 +1,4 @@
-FROM php:8.0.3-fpm-buster
+FROM php:8.1.8-fpm-buster
 LABEL maintainer="ucan-lab <yes@u-can.pro>"
 SHELL ["/bin/bash", "-oeux", "pipefail", "-c"]
 
