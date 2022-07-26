@@ -20,9 +20,9 @@ ENV TZ=Asia/Taipei \
   DB_CONNECTION=mysql \
   DB_PORT=3306 
 
-RUN apt-get update
+# RUN apt-get update
 # 移除確定不需要的安裝
-RUN apt-get -y install curl libicu-dev libonig-dev libzip-dev libfreetype6-dev libjpeg62-turbo-dev libpng-dev libxml2-dev unzip locales 
+RUN apt-get update && apt-get -y install curl libicu-dev libonig-dev libzip-dev libfreetype6-dev libjpeg62-turbo-dev libpng-dev libxml2-dev unzip locales 
 RUN apt-get -y install default-mysql-client
 # 跟 app 不一樣的地方
 RUN apt-get -y install htop supervisor
