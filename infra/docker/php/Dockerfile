@@ -30,7 +30,7 @@ ENV TZ=Asia/Taipei \
 COPY --from=composer:2.0.12 /usr/bin/composer /usr/bin/composer
 
 RUN apt-get update
-RUN apt-get -y install git curl libicu-dev libonig-dev libzip-dev libfreetype6-dev libjpeg62-turbo-dev libpng-dev libxml2-dev unzip locales opencc libopencc-dev 
+RUN apt-get -y install git curl libicu-dev libonig-dev libzip-dev libfreetype6-dev libjpeg62-turbo-dev libpng-dev libxml2-dev unzip locales opencc libopencc-dev
 # RUN apt-get -y install wget gnupg lsb-release && wget https://repo.mysql.com/mysql-apt-config_0.8.15-1_all.deb -P /tmp && dpkg -i /tmp/mysql-apt-config_0.8.15-1_all.deb && apt-get update && \
 RUN apt-get -y install default-mysql-client
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* 
@@ -42,6 +42,8 @@ RUN docker-php-ext-configure gd --with-freetype --with-jpeg && \
 RUN composer config -g process-timeout 3600 && \
   composer config -g repos.packagist composer https://packagist.org 
   # && \  composer global require hirak/prestissimo # copmoser 2 don't need this plugin
+
+RUN pecl install redis && docker-php-ext-enable redis
 
 COPY ./php-fpm.d/zzz-www.conf /usr/local/etc/php-fpm.d/zzz-www.conf
 COPY ./php.ini /usr/local/etc/php/php.ini

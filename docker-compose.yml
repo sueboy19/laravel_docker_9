@@ -2,6 +2,7 @@ version: "3.8"
 volumes:
   php-fpm-socket:
   db-store:
+  redis-data:
 services:
   app:
     build: ./infra/docker/php
@@ -26,24 +27,11 @@ services:
       - 3306:3306
     volumes:
       - db-store:/var/lib/mysql
-
-  queue:
-    build: ./infra/docker/queue
-    env_file: ./env.mariadb.local.env
-    stop_signal: SIGTERM
-    depends_on:
-      - app
-    volumes:
-      - ./backend:/work/backend
-    # environment:
-    #   - CONNECTION=redis       # Defaults to 'default'
-    #   - QUEUE=high,default     # Defaults to 'default'    
-    
-  cron:
-    build: ./infra/docker/cron
-    env_file: ./env.mariadb.local.env
-    stop_signal: SIGTERM
-    depends_on:
-      - app
-    volumes:
-      - ./backend:/work/backend
+  
+  redis:
+    image: redis:6.2.7
+    ports:
+      - 6379:6379
+    command: redis-server --save 20 1 --loglevel warning 
+    volumes: 
+      - redis-data:/data
