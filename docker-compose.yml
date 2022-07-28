@@ -16,6 +16,7 @@ services:
     ports:
       - 80:80
       - 443:443
+      - 5173:5173
     volumes:
       - php-fpm-socket:/var/run/php-fpm
       - ./backend:/work/backend
