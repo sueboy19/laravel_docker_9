@@ -1,4 +1,4 @@
-FROM node:14.2-alpine as node
+FROM node:18.7.0-alpine3.16 as node
 FROM nginx:1.18-alpine
 LABEL maintainer="ucan-lab <yes@u-can.pro>"
 SHELL ["/bin/ash", "-oeux", "pipefail", "-c"]
