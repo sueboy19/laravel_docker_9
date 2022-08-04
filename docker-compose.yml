@@ -36,3 +36,9 @@ services:
     command: redis-server --save 20 1 --loglevel warning 
     volumes: 
       - redis-data:/data
+  sch:
+    image: node:18-alpine
+    working_dir: /home/node/app
+    volumes:
+      - ./infra/docker/sch:/home/node/app
+    command: "/usr/sbin/crond -f -l 0 -c /home/node/app/crontab -L /var/log/cron.log"
