@@ -44,6 +44,7 @@ RUN composer config -g process-timeout 3600 && \
   # && \  composer global require hirak/prestissimo # copmoser 2 don't need this plugin
 
 RUN pecl install redis && docker-php-ext-enable redis
+RUN docker-php-ext-configure pcntl --enable-pcntl && docker-php-ext-install pcntl posix
 
 COPY ./php-fpm.d/zzz-www.conf /usr/local/etc/php-fpm.d/zzz-www.conf
 COPY ./php.ini /usr/local/etc/php/php.ini
