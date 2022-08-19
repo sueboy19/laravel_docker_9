@@ -76,3 +76,13 @@ protected function schedule(Schedule $schedule)
             })
             ->appendOutputTo($fileCronLog);
 ```
+
+執行無反應時，需要到 /work/backend/storage/logs/laravel.log 閱讀錯誤訊息  
+
+特別注意：crontab的格式必需LF，不能是CRLF  
+
+## Sch
+[Sch](infra/docker/sch) 可以自行替換  
+
+主要用途：模擬定時呼叫 API  
+使用 node 18 加上 cron 的方式  
