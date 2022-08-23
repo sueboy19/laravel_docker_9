@@ -27,7 +27,7 @@ ENV TZ=Asia/Taipei \
   DB_USERNAME=phper \
   DB_PASSWORD=secret
 
-COPY --from=composer:2.0.12 /usr/bin/composer /usr/bin/composer
+COPY --from=composer:2.4.1 /usr/bin/composer /usr/bin/composer
 
 RUN apt-get update
 RUN apt-get -y install git curl libicu-dev libonig-dev libzip-dev libfreetype6-dev libjpeg62-turbo-dev libpng-dev libxml2-dev unzip locales opencc libopencc-dev
